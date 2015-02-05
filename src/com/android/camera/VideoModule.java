@@ -2081,17 +2081,11 @@ public class VideoModule implements CameraModule,
             List<VideoEncoderCap> videoEncoders = EncoderCapabilities.getVideoEncoders();
             for (VideoEncoderCap videoEncoder: videoEncoders) {
                 if (videoEncoder.mCodec == mVideoEncoder){
-                    int maxBitrate = (videoEncoder.mMaxHFRFrameWidth *
-                                     videoEncoder.mMaxHFRFrameHeight *
-                                     videoEncoder.mMaxHFRMode);
+                    int maxBitrate = 0;
                     if (inputBitrate > maxBitrate ){
                             Log.e(TAG,"Selected codec "+mVideoEncoder+
                                 " does not support HFR " + highFrameRate + " with "+ videoWidth
                                 + "x" + videoHeight +" resolution");
-                            Log.e(TAG, "Codec capabilities: " +
-                                "mMaxHFRFrameWidth = " + videoEncoder.mMaxHFRFrameWidth + " , "+
-                                "mMaxHFRFrameHeight = " + videoEncoder.mMaxHFRFrameHeight + " , "+
-                                "mMaxHFRMode = " + videoEncoder.mMaxHFRMode);
                             mUnsupportedHFRVideoSize = true;
                     }
                     break;
